@@ -69,8 +69,8 @@ namespace DoomSharp
 
             try
             {
-                config.video_screenwidth = Math.Clamp(config.video_screenwidth, 320, 3200);
-                config.video_screenheight = Math.Clamp(config.video_screenheight, 200, 2000);
+                config.video_screenwidth = MathHelper.Clamp(config.video_screenwidth, 320, 3200);
+                config.video_screenheight = MathHelper.Clamp(config.video_screenheight, 200, 2000);
                 var videoMode = new VideoMode((uint)config.video_screenwidth, (uint)config.video_screenheight);
                 var style = Styles.Close | Styles.Titlebar;
                 if (config.video_fullscreen)
@@ -150,7 +150,7 @@ namespace DoomSharp
             catch (Exception e)
             {
                 Dispose();
-                ExceptionDispatchInfo.Throw(e);
+                ExceptionDispatchInfo.Capture(e);
             }
         }
 
@@ -239,7 +239,7 @@ namespace DoomSharp
 
         public void Run()
         {
-            while (window.IsOpen)
+           while (window.IsOpen)
             {
                 window.DispatchEvents();
                 DoEvents();

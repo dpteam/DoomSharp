@@ -57,7 +57,7 @@ namespace DoomSharp
             {
                 Console.WriteLine("Failed");
                 Dispose();
-                ExceptionDispatchInfo.Throw(e);
+                ExceptionDispatchInfo.Capture(e);
             }
         }
 

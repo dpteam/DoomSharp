@@ -58,7 +58,7 @@ namespace DoomSharp.Audio
 
                 this.config = config;
 
-                config.audio_soundvolume = Math.Clamp(config.audio_soundvolume, 0, MaxVolume);
+                config.audio_soundvolume = MathHelper.Clamp(config.audio_soundvolume, 0, MaxVolume);
 
                 buffers = new SoundBuffer[DoomInfo.SfxNames.Length];
                 amplitudes = new float[DoomInfo.SfxNames.Length];
@@ -103,7 +103,7 @@ namespace DoomSharp.Audio
             {
                 Console.WriteLine("Failed");
                 Dispose();
-                ExceptionDispatchInfo.Throw(e);
+                ExceptionDispatchInfo.Capture(e);
             }
         }
 
@@ -214,62 +214,65 @@ namespace DoomSharp.Audio
                 return;
             }
 
-            for (var i = 0; i < infos.Length; i++)
+            if (channels != null)
             {
-                var info = infos[i];
-                var channel = channels[i];
-
-                if (info.Playing != Sfx.NONE)
-                {
-                    if (channel.Status != SoundStatus.Stopped)
+                    for (var i = 0; i < infos.Length; i++)
                     {
-                        if (info.Type == SfxType.Diffuse)
+                        var info = infos[i];
+                        var channel = channels[i];
+
+                        if (info.Playing != Sfx.NONE)
                         {
-                            info.Priority *= slowDecay;
+                            if (channel.Status != SoundStatus.Stopped)
+                            {
+                                if (info.Type == SfxType.Diffuse)
+                                {
+                                    info.Priority *= slowDecay;
+                                }
+                                else
+                                {
+                                    info.Priority *= fastDecay;
+                                }
+                                SetParam(channel, info);
+                            }
+                            else
+                            {
+                                info.Playing = Sfx.NONE;
+                                if (info.Reserved == Sfx.NONE)
+                                {
+                                    info.Source = null;
+                                }
+                            }
                         }
-                        else
+
+                        if (info.Reserved != Sfx.NONE)
                         {
-                            info.Priority *= fastDecay;
+                            if (info.Playing != Sfx.NONE)
+                            {
+                                channel.Stop();
+                            }
+
+                            channel.SoundBuffer = buffers[(int)info.Reserved];
+                            SetParam(channel, info);
+                            channel.Play();
+                            info.Playing = info.Reserved;
+                            info.Reserved = Sfx.NONE;
                         }
-                        SetParam(channel, info);
                     }
-                    else
+
+                    if (uiReserved != Sfx.NONE)
                     {
-                        info.Playing = Sfx.NONE;
-                        if (info.Reserved == Sfx.NONE)
+                        if (uiChannel.Status == SoundStatus.Playing)
                         {
-                            info.Source = null;
+                            uiChannel.Stop();
                         }
+                        uiChannel.Volume = 100 * masterVolumeDecay;
+                        uiChannel.SoundBuffer = buffers[(int)uiReserved];
+                        uiChannel.Play();
+                        uiReserved = Sfx.NONE;
                     }
+                    buffers = null;
                 }
-
-                if (info.Reserved != Sfx.NONE)
-                {
-                    if (info.Playing != Sfx.NONE)
-                    {
-                        channel.Stop();
-                    }
-
-                    channel.SoundBuffer = buffers[(int)info.Reserved];
-                    SetParam(channel, info);
-                    channel.Play();
-                    info.Playing = info.Reserved;
-                    info.Reserved = Sfx.NONE;
-                }
-            }
-
-            if (uiReserved != Sfx.NONE)
-            {
-                if (uiChannel.Status == SoundStatus.Playing)
-                {
-                    uiChannel.Stop();
-                }
-                uiChannel.Volume = 100 * masterVolumeDecay;
-                uiChannel.SoundBuffer = buffers[(int)uiReserved];
-                uiChannel.Play();
-                uiReserved = Sfx.NONE;
-            }
-
             lastUpdate = now;
         }
 
@@ -297,7 +300,7 @@ namespace DoomSharp.Audio
 
             var x = (mobj.X - listener.X).ToFloat();
             var y = (mobj.Y - listener.Y).ToFloat();
-            var dist = MathF.Sqrt(x * x + y * y);
+            var dist = (float)(Math.Sqrt(x * x + y * y));
 
             float priority;
             if (type == SfxType.Diffuse)
@@ -447,9 +450,9 @@ namespace DoomSharp.Audio
                 }
                 else
                 {
-                    var dist = MathF.Sqrt(x * x + y * y);
-                    var angle = MathF.Atan2(y, x) - (float)listener.Angle.ToRadian() + MathF.PI / 2;
-                    sound.Position = new Vector3f(MathF.Cos(angle), MathF.Sin(angle), 0);
+                    var dist = (float)(Math.Sqrt(x * x + y * y));
+                    var angle = (float)Math.Atan2(y, x) - (float)listener.Angle.ToRadian() + (float)Math.PI / 2;
+                    sound.Position = new Vector3f((float)(Math.Cos(angle)), (float)(Math.Sin(angle)), 0);
                     sound.Volume = masterVolumeDecay * GetDistanceDecay(dist) * info.Volume;
                 }
             }

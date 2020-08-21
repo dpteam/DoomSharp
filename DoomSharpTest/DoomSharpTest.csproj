@@ -1,270 +1,187 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-
-    <IsPackable>false</IsPackable>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{64633F5A-456D-46E4-9FB7-7F20226ACAB1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DoomSharpTest</RootNamespace>
+    <AssemblyName>DoomSharpTest</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>DoomSharp.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>DoomSharpTest.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
-    <PackageReference Include="coverlet.collector" Version="1.0.1" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\CompatibilityTests\DoNothing.cs" />
+    <Compile Include="src\CompatibilityTests\FireOnce.cs" />
+    <Compile Include="src\CompatibilityTests\IwadDemo.cs" />
+    <Compile Include="src\CompatibilityTests\MapGimmicks.cs" />
+    <Compile Include="src\CompatibilityTests\Miscellaneous.cs" />
+    <Compile Include="src\CompatibilityTests\Monsters.cs" />
+    <Compile Include="src\CompatibilityTests\MultiLevel.cs" />
+    <Compile Include="src\CompatibilityTests\PlayerMovement.cs" />
+    <Compile Include="src\CompatibilityTests\PlayerWeapon.cs" />
+    <Compile Include="src\CompatibilityTests\PwadDemo.cs" />
+    <Compile Include="src\CompatibilityTests\SectorAction.cs" />
+    <Compile Include="src\Program.cs" />
+    <Compile Include="src\UnitTests\AngleTest.cs" />
+    <Compile Include="src\UnitTests\BlockMapTest.cs" />
+    <Compile Include="src\UnitTests\DemoTest.cs" />
+    <Compile Include="src\UnitTests\FixedTest.cs" />
+    <Compile Include="src\UnitTests\GeometryTest.cs" />
+    <Compile Include="src\UnitTests\LineDefTest.cs" />
+    <Compile Include="src\UnitTests\MapTest.cs" />
+    <Compile Include="src\UnitTests\NodeTest.cs" />
+    <Compile Include="src\UnitTests\RejectTest.cs" />
+    <Compile Include="src\UnitTests\SectorTest.cs" />
+    <Compile Include="src\UnitTests\SegTest.cs" />
+    <Compile Include="src\UnitTests\SideDefTest.cs" />
+    <Compile Include="src\UnitTests\SubsectorTest.cs" />
+    <Compile Include="src\UnitTests\ThingTest.cs" />
+    <Compile Include="src\UnitTests\TrigTest.cs" />
+    <Compile Include="src\UnitTests\VertexTest.cs" />
+    <Compile Include="src\UnitTests\WadTest.cs" />
+    <Compile Include="src\WadPath.cs" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSTest.TestFramework.2.1.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSTest.TestFramework.2.1.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0-preview.7.20364.11\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DoomSharp.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="data\altdeath_test.lmp" />
+    <None Include="data\arachnotron_test.lmp" />
+    <None Include="data\arachnotron_test.wad" />
+    <None Include="data\archvile_test.lmp" />
+    <None Include="data\archvile_test.wad" />
+    <None Include="data\autoaim_test.lmp" />
+    <None Include="data\autoaim_test.wad" />
+    <None Include="data\baron_test.lmp" />
+    <None Include="data\baron_test.wad" />
+    <None Include="data\barrel_test.lmp" />
+    <None Include="data\barrel_test.wad" />
+    <None Include="data\bfg_test.lmp" />
+    <None Include="data\bfg_test.wad" />
+    <None Include="data\cacodemon_test.lmp" />
+    <None Include="data\cacodemon_test.wad" />
+    <None Include="data\chaingunguy_test.lmp" />
+    <None Include="data\chaingunguy_test.wad" />
+    <None Include="data\chaingun_test.lmp" />
+    <None Include="data\chaingun_test.wad" />
+    <None Include="data\chainsaw_test.lmp" />
+    <None Include="data\chainsaw_test.wad" />
+    <None Include="data\demon_test.lmp" />
+    <None Include="data\demon_test.wad" />
+    <None Include="data\fast_baron_test.lmp" />
+    <None Include="data\fast_cacodemon_test.lmp" />
+    <None Include="data\fast_demon_test.lmp" />
+    <None Include="data\fast_imp_test.lmp" />
+    <None Include="data\fatso_test.lmp" />
+    <None Include="data\fatso_test.wad" />
+    <None Include="data\finale_test.wad" />
+    <None Include="data\finale_test1.lmp" />
+    <None Include="data\finale_test2.lmp" />
+    <None Include="data\imp_test.lmp" />
+    <None Include="data\imp_test.wad" />
+    <None Include="data\localdoor_test.lmp" />
+    <None Include="data\localdoor_test.wad" />
+    <None Include="data\lostsoul_test.wad" />
+    <None Include="data\lostsoul_test_final2.lmp" />
+    <None Include="data\multilevel_test_doom1.lmp" />
+    <None Include="data\multilevel_test_doom1.wad" />
+    <None Include="data\multilevel_test_doom2.lmp" />
+    <None Include="data\multilevel_test_doom2.wad" />
+    <None Include="data\nightmare_test.lmp" />
+    <None Include="data\painelemental_test.wad" />
+    <None Include="data\painelemental_test_final2.lmp" />
+    <None Include="data\plasma_test.lmp" />
+    <None Include="data\plasma_test.wad" />
+    <None Include="data\platform_test.lmp" />
+    <None Include="data\platform_test.wad" />
+    <None Include="data\player_movement_test.lmp" />
+    <None Include="data\player_movement_test.wad" />
+    <None Include="data\punch_test.lmp" />
+    <None Include="data\punch_test.wad" />
+    <None Include="data\revenant_test.lmp" />
+    <None Include="data\revenant_test.wad" />
+    <None Include="data\rocket_test.lmp" />
+    <None Include="data\rocket_test.wad" />
+    <None Include="data\shotgunguy_test.lmp" />
+    <None Include="data\shotgunguy_test.wad" />
+    <None Include="data\shotgun_test.lmp" />
+    <None Include="data\shotgun_test.wad" />
+    <None Include="data\sky_shoot_test.lmp" />
+    <None Include="data\sky_shoot_test.wad" />
+    <None Include="data\supershotgun_test.lmp" />
+    <None Include="data\supershotgun_test.wad" />
+    <None Include="data\telefrag_test.lmp" />
+    <None Include="data\telefrag_test.wad" />
+    <None Include="data\teleporter_test.lmp" />
+    <None Include="data\teleporter_test.wad" />
+    <None Include="data\thing_collision_test.lmp" />
+    <None Include="data\thing_collision_test.wad" />
+    <None Include="data\zombieman_test.lmp" />
+    <None Include="data\zombieman_test.wad" />
+    <None Include="data\zombieman_test2.lmp" />
+    <None Include="data\zombieman_test2.wad" />
+    <None Include="demos\e1m2_donut_test.lmp" />
+    <None Include="demos\e1m8_boss_test.lmp" />
+    <None Include="demos\map06_crusher_test.lmp" />
+    <None Include="demos\map07_boss_test.lmp" />
+    <None Include="demos\map30_brain_test.lmp" />
+    <None Include="demos\map32_keen_test.lmp" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DoomSharp\DoomSharp.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="demos\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="data\altdeath_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\arachnotron_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\arachnotron_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\archvile_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\archvile_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\autoaim_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\autoaim_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\baron_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\baron_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\barrel_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\barrel_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\bfg_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\bfg_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\cacodemon_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\cacodemon_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\chaingunguy_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\chaingunguy_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\chaingun_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\chaingun_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\chainsaw_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\chainsaw_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\demon_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\demon_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\fast_baron_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\fast_cacodemon_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\fast_demon_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\fast_imp_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\fatso_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\fatso_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\finale_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\finale_test1.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\finale_test2.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\imp_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\imp_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\localdoor_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\localdoor_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\lostsoul_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\lostsoul_test_final2.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\multilevel_test_doom1.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\multilevel_test_doom1.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\multilevel_test_doom2.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\multilevel_test_doom2.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\nightmare_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\painelemental_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\painelemental_test_final2.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\plasma_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\plasma_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\platform_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\platform_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\player_movement_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\player_movement_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\punch_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\punch_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\revenant_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\revenant_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\rocket_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\rocket_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\shotgunguy_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\shotgunguy_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\shotgun_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\shotgun_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\sky_shoot_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\sky_shoot_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\supershotgun_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\supershotgun_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\telefrag_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\telefrag_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\teleporter_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\teleporter_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\thing_collision_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\thing_collision_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\zombieman_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\zombieman_test.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\zombieman_test2.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\zombieman_test2.wad">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="demos\e1m2_donut_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="demos\e1m8_boss_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="demos\map06_crusher_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="demos\map07_boss_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="demos\map30_brain_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="demos\map32_keen_test.lmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

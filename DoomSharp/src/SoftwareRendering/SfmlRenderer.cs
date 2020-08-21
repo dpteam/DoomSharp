@@ -81,8 +81,8 @@ namespace DoomSharp.SoftwareRendering
 
                 this.config = config;
 
-                config.video_gamescreensize = Math.Clamp(config.video_gamescreensize, 0, MaxWindowSize);
-                config.video_gammacorrection = Math.Clamp(config.video_gammacorrection, 0, MaxGammaCorrectionLevel);
+                config.video_gamescreensize = MathHelper.Clamp(config.video_gamescreensize, 0, MaxWindowSize);
+                config.video_gammacorrection = MathHelper.Clamp(config.video_gammacorrection, 0, MaxGammaCorrectionLevel);
 
                 sfmlWindow = window;
                 palette = resource.Palette;
@@ -140,7 +140,7 @@ namespace DoomSharp.SoftwareRendering
             {
                 Console.WriteLine("Failed");
                 Dispose();
-                ExceptionDispatchInfo.Throw(e);
+                ExceptionDispatchInfo.Capture(e);
             }
         }
 
@@ -267,7 +267,7 @@ namespace DoomSharp.SoftwareRendering
                 var dy = (float)(y2 - y1) / wipeBandWidth;
                 for (var x = x1; x < x2; x++)
                 {
-                    var y = (int)MathF.Round(y1 + dy * ((x - x1) / 2 * 2));
+                    var y = (int)Math.Round(y1 + dy * ((x - x1) / 2 * 2));
                     var copyLength = screen.Height - y;
                     if (copyLength > 0)
                     {

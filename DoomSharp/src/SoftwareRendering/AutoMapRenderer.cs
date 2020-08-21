@@ -203,8 +203,8 @@ namespace DoomSharp.SoftwareRendering
                 var pos = ToScreenPos(am.Marks[i]);
                 screen.DrawPatch(
                     markNumbers[i],
-                    (int)MathF.Round(pos.X),
-                    (int)MathF.Round(pos.Y),
+                    (int)Math.Round(pos.X),
+                    (int)Math.Round(pos.Y),
                     scale);
             }
 

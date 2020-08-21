@@ -50,7 +50,7 @@ namespace DoomSharp
             catch (Exception e)
             {
                 Console.WriteLine("Failed");
-                ExceptionDispatchInfo.Throw(e);
+                ExceptionDispatchInfo.Capture(e);
             }
         }
 

@@ -75,7 +75,7 @@ namespace DoomSharp.UserInput
             {
                 Console.WriteLine("Failed");
                 Dispose();
-                ExceptionDispatchInfo.Throw(e);
+                ExceptionDispatchInfo.Capture(e);
             }
         }
 
@@ -197,8 +197,8 @@ namespace DoomSharp.UserInput
             {
                 UpdateMouse();
                 var ms = 0.5F * config.mouse_sensitivity;
-                var mx = (int)MathF.Round(ms * mouseX);
-                var my = (int)MathF.Round(ms * mouseY);
+                var mx = (int)Math.Round(ms * mouseX);
+                var my = (int)Math.Round(ms * mouseY);
                 forward += my;
                 if (strafe)
                 {

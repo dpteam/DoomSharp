@@ -495,11 +495,11 @@ namespace DoomSharp
 
 		public void InitNew(GameSkill skill, int episode, int map)
 		{
-			skill = (GameSkill)Math.Clamp((int)skill, (int)GameSkill.Baby, (int)GameSkill.Nightmare);
+			skill = (GameSkill)MathHelper.Clamp((int)skill, (int)GameSkill.Baby, (int)GameSkill.Nightmare);
 
 			if (options.GameMode == GameMode.Retail)
 			{
-				episode = Math.Clamp(episode, 1, 4);
+				episode = MathHelper.Clamp(episode, 1, 4);
 			}
 			else if (options.GameMode == GameMode.Shareware)
 			{
@@ -507,16 +507,16 @@ namespace DoomSharp
 			}
 			else
 			{
-				episode = Math.Clamp(episode, 1, 3);
+				episode = MathHelper.Clamp(episode, 1, 3);
 			}
 
 			if (options.GameMode == GameMode.Commercial)
 			{
-				map = Math.Clamp(map, 1, 32);
+				map = MathHelper.Clamp(map, 1, 32);
 			}
 			else
 			{
-				map = Math.Clamp(map, 1, 9);
+				map = MathHelper.Clamp(map, 1, 9);
 			}
 
 			random.Clear();

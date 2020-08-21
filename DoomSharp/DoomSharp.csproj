@@ -1,17 +1,394 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{7A16E642-A9AE-4C47-BE5D-29430CA54A35}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>DoomSharp</RootNamespace>
     <AssemblyName>DoomSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>DoomSharp.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>DoomSharp.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="SFML.Net" Version="2.5.0" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\ApplicationInfo.cs" />
+    <Compile Include="src\ApplicationState.cs" />
+    <Compile Include="src\Audio\Bgm.cs" />
+    <Compile Include="src\MathHelper.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\AssetManager.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\Effects\Chorus.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\Effects\Delay.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\Effects\Flanger.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\Effects\IAudioEffect.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\Enum.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\Envelope.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\Filter.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\Generators\Generator.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\Generators\GeneratorParameters.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\Generators\SampleGenerator.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\Generators\SawGenerator.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\Generators\SineGenerator.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\Generators\SquareGenerator.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\Generators\TriangleGenerator.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\Generators\WhiteNoiseGenerator.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Components\LFO.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\DescriptorList.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Descriptors\CustomDescriptor.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Descriptors\EnvelopeDescriptor.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Descriptors\FilterDescriptor.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Descriptors\GeneratorDescriptor.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Descriptors\IDescriptor.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Descriptors\LFODescriptor.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\PatchAsset.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\PatchBank.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Patches\BasicPatch.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Patches\Fm2Patch.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Patches\MultiPatch.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Patches\Patch.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Patches\Sf2Patch.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\Patches\SfzPatch.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Bank\SampleDataAsset.cs" />
+    <Compile Include="src\Audio\CSharpSynth\CrossPlatformHelper.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Midi\Event\MetaDataEvent.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Midi\Event\MetaEvent.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Midi\Event\MetaNumberEvent.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Midi\Event\MetaTextEvent.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Midi\Event\MidiEvent.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Midi\Event\RealTimeEvent.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Midi\Event\SystemCommonEvent.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Midi\Event\SystemExclusiveEvent.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Midi\MidiFile.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Midi\MidiHelper.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Midi\MidiTrack.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sequencer\MidiFileSequencer.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sequencer\MidiInputSequencer.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\Chunks\GeneratorChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\Chunks\InstrumentChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\Chunks\ModulatorChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\Chunks\PresetHeaderChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\Chunks\SampleHeaderChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\Chunks\ZoneChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\Enum.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\Generator.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\Instrument.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\Modulator.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\ModulatorType.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\PresetHeader.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\SampleHeader.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\Sf2Region.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\SoundFont.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\SoundFontInfo.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\SoundFontPresets.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\SoundFontSampleData.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sf2\Zone.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sfz\SfzReader.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Sfz\SfzRegion.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Synthesis\Synthesizer.Constants.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Synthesis\Synthesizer.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Synthesis\Synthesizer.MidiControl.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Synthesis\SynthHelper.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Synthesis\Voice.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Synthesis\VoiceManager.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Synthesis\VoiceParameters.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\IOHelper.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\PitchShift.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\Riff\Chunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\Riff\CueChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\Riff\DataChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\Riff\FactChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\Riff\FormatChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\Riff\InstrumentChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\Riff\LabelChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\Riff\LabeledTextChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\Riff\ListChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\Riff\NoteChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\Riff\PlaylistChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\Riff\RiffTypeChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\Riff\SamplerChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\Riff\UnknownChunk.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\Tables.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Util\TimeStretch.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Wave\WaveFile.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Wave\WaveFileReader.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Wave\WaveFileWriter.cs" />
+    <Compile Include="src\Audio\CSharpSynth\Wave\WaveHelper.cs" />
+    <Compile Include="src\Audio\IMusic.cs" />
+    <Compile Include="src\Audio\ISound.cs" />
+    <Compile Include="src\Audio\NullMusic.cs" />
+    <Compile Include="src\Audio\NullSound.cs" />
+    <Compile Include="src\Audio\SfmlMusic.cs" />
+    <Compile Include="src\Audio\SfmlSound.cs" />
+    <Compile Include="src\Audio\Sfx.cs" />
+    <Compile Include="src\Audio\SfxType.cs" />
+    <Compile Include="src\CommandLineArgs.cs" />
+    <Compile Include="src\Config.cs" />
+    <Compile Include="src\ConfigUtilities.cs" />
+    <Compile Include="src\DeHackEd.cs" />
+    <Compile Include="src\DoomApplication.cs" />
+    <Compile Include="src\Doom\Common\CommonResource.cs" />
+    <Compile Include="src\Doom\Common\DoomDebug.cs" />
+    <Compile Include="src\Doom\Common\DoomInterop.cs" />
+    <Compile Include="src\Doom\Common\DoomRandom.cs" />
+    <Compile Include="src\Doom\Common\DoomString.cs" />
+    <Compile Include="src\Doom\DemoPlayback.cs" />
+    <Compile Include="src\Doom\Event\DoomEvent.cs" />
+    <Compile Include="src\Doom\Event\EventType.cs" />
+    <Compile Include="src\Doom\Game\Demo.cs" />
+    <Compile Include="src\Doom\Game\DoomGame.cs" />
+    <Compile Include="src\Doom\Game\GameConst.cs" />
+    <Compile Include="src\Doom\Game\GameMode.cs" />
+    <Compile Include="src\Doom\Game\GameOptions.cs" />
+    <Compile Include="src\Doom\Game\GameSkill.cs" />
+    <Compile Include="src\Doom\Game\GameState.cs" />
+    <Compile Include="src\Doom\Game\GameVersion.cs" />
+    <Compile Include="src\Doom\Game\MissionPack.cs" />
+    <Compile Include="src\Doom\Game\Player.cs" />
+    <Compile Include="src\Doom\Game\PlayerState.cs" />
+    <Compile Include="src\Doom\Game\SaveAndLoad.cs" />
+    <Compile Include="src\Doom\Game\TicCmd.cs" />
+    <Compile Include="src\Doom\Game\TicCmdButtons.cs" />
+    <Compile Include="src\Doom\Game\UpdateResult.cs" />
+    <Compile Include="src\Doom\Graphics\AnimationDef.cs" />
+    <Compile Include="src\Doom\Graphics\ColorMap.cs" />
+    <Compile Include="src\Doom\Graphics\Column.cs" />
+    <Compile Include="src\Doom\Graphics\Dummy.cs" />
+    <Compile Include="src\Doom\Graphics\Flat.cs" />
+    <Compile Include="src\Doom\Graphics\FlatLookup.cs" />
+    <Compile Include="src\Doom\Graphics\Palette.cs" />
+    <Compile Include="src\Doom\Graphics\Patch.cs" />
+    <Compile Include="src\Doom\Graphics\PatchCache.cs" />
+    <Compile Include="src\Doom\Graphics\Sprite.cs" />
+    <Compile Include="src\Doom\Graphics\SpriteDef.cs" />
+    <Compile Include="src\Doom\Graphics\SpriteFrame.cs" />
+    <Compile Include="src\Doom\Graphics\SpriteLookup.cs" />
+    <Compile Include="src\Doom\Graphics\Texture.cs" />
+    <Compile Include="src\Doom\Graphics\TextureAnimation.cs" />
+    <Compile Include="src\Doom\Graphics\TextureAnimationInfo.cs" />
+    <Compile Include="src\Doom\Graphics\TextureLookup.cs" />
+    <Compile Include="src\Doom\Graphics\TexturePatch.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.AmmoInfos.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.BgmNames.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.DeHackEdConst.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.MapTitles.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.MobjActions.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.MobjInfos.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.ParTimes.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.PlayerActions.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.PowerDuration.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.QuitMessages.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.SfxNames.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.SpriteNames.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.States.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.Strings.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.SwitchNames.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.TextureAnimation.cs" />
+    <Compile Include="src\Doom\Info\DoomInfo.WeaponInfos.cs" />
+    <Compile Include="src\Doom\Intermission\Animation.cs" />
+    <Compile Include="src\Doom\Intermission\AnimationInfo.cs" />
+    <Compile Include="src\Doom\Intermission\AnimationType.cs" />
+    <Compile Include="src\Doom\Intermission\Finale.cs" />
+    <Compile Include="src\Doom\Intermission\Intermission.cs" />
+    <Compile Include="src\Doom\Intermission\IntermissionInfo.cs" />
+    <Compile Include="src\Doom\Intermission\IntermissionState.cs" />
+    <Compile Include="src\Doom\Intermission\PlayerScores.cs" />
+    <Compile Include="src\Doom\Intermission\WorldMap.cs" />
+    <Compile Include="src\Doom\Map\BlockMap.cs" />
+    <Compile Include="src\Doom\Map\LineDef.cs" />
+    <Compile Include="src\Doom\Map\LineFlags.cs" />
+    <Compile Include="src\Doom\Map\LineSpecial.cs" />
+    <Compile Include="src\Doom\Map\Map.cs" />
+    <Compile Include="src\Doom\Map\MapThing.cs" />
+    <Compile Include="src\Doom\Map\Node.cs" />
+    <Compile Include="src\Doom\Map\Reject.cs" />
+    <Compile Include="src\Doom\Map\Sector.cs" />
+    <Compile Include="src\Doom\Map\SectorSpecial.cs" />
+    <Compile Include="src\Doom\Map\Seg.cs" />
+    <Compile Include="src\Doom\Map\SideDef.cs" />
+    <Compile Include="src\Doom\Map\SlopeType.cs" />
+    <Compile Include="src\Doom\Map\Subsector.cs" />
+    <Compile Include="src\Doom\Map\ThingFlags.cs" />
+    <Compile Include="src\Doom\Map\Vertex.cs" />
+    <Compile Include="src\Doom\Math\Angle.cs" />
+    <Compile Include="src\Doom\Math\Fixed.cs" />
+    <Compile Include="src\Doom\Math\Geometry.cs" />
+    <Compile Include="src\Doom\Math\Trig.cs" />
+    <Compile Include="src\Doom\Math\Trig.Tables.cs" />
+    <Compile Include="src\Doom\Menu\DoomMenu.cs" />
+    <Compile Include="src\Doom\Menu\HelpScreen.cs" />
+    <Compile Include="src\Doom\Menu\LoadMenu.cs" />
+    <Compile Include="src\Doom\Menu\MenuDef.cs" />
+    <Compile Include="src\Doom\Menu\MenuItem.cs" />
+    <Compile Include="src\Doom\Menu\PressAnyKey.cs" />
+    <Compile Include="src\Doom\Menu\QuitConfirm.cs" />
+    <Compile Include="src\Doom\Menu\SaveMenu.cs" />
+    <Compile Include="src\Doom\Menu\SaveSlots.cs" />
+    <Compile Include="src\Doom\Menu\SelectableMenu.cs" />
+    <Compile Include="src\Doom\Menu\SimpleMenuItem.cs" />
+    <Compile Include="src\Doom\Menu\SliderMenuItem.cs" />
+    <Compile Include="src\Doom\Menu\TextBoxMenuItem.cs" />
+    <Compile Include="src\Doom\Menu\TextInput.cs" />
+    <Compile Include="src\Doom\Menu\TextInputState.cs" />
+    <Compile Include="src\Doom\Menu\ToggleMenuItem.cs" />
+    <Compile Include="src\Doom\Menu\YesNoConfirm.cs" />
+    <Compile Include="src\Doom\OpeningSequence.cs" />
+    <Compile Include="src\Doom\OpeningSequenceState.cs" />
+    <Compile Include="src\Doom\Wad\LumpInfo.cs" />
+    <Compile Include="src\Doom\Wad\Wad.cs" />
+    <Compile Include="src\Doom\World\AmmoType.cs" />
+    <Compile Include="src\Doom\World\AutoMap.cs" />
+    <Compile Include="src\Doom\World\AutoMapState.cs" />
+    <Compile Include="src\Doom\World\Box.cs" />
+    <Compile Include="src\Doom\World\BoxEx.cs" />
+    <Compile Include="src\Doom\World\Button.cs" />
+    <Compile Include="src\Doom\World\ButtonPosition.cs" />
+    <Compile Include="src\Doom\World\CardType.cs" />
+    <Compile Include="src\Doom\World\CeilingMove.cs" />
+    <Compile Include="src\Doom\World\CeilingMoveType.cs" />
+    <Compile Include="src\Doom\World\Cheat.cs" />
+    <Compile Include="src\Doom\World\CheatFlags.cs" />
+    <Compile Include="src\Doom\World\Direction.cs" />
+    <Compile Include="src\Doom\World\DivLine.cs" />
+    <Compile Include="src\Doom\World\FireFlicker.cs" />
+    <Compile Include="src\Doom\World\FloorMove.cs" />
+    <Compile Include="src\Doom\World\FloorMoveType.cs" />
+    <Compile Include="src\Doom\World\GlowingLight.cs" />
+    <Compile Include="src\Doom\World\Hitscan.cs" />
+    <Compile Include="src\Doom\World\Intercept.cs" />
+    <Compile Include="src\Doom\World\ItemPickup.cs" />
+    <Compile Include="src\Doom\World\LightFlash.cs" />
+    <Compile Include="src\Doom\World\LightingChange.cs" />
+    <Compile Include="src\Doom\World\MapCollision.cs" />
+    <Compile Include="src\Doom\World\MapInteraction.cs" />
+    <Compile Include="src\Doom\World\Mobj.cs" />
+    <Compile Include="src\Doom\World\MobjFlags.cs" />
+    <Compile Include="src\Doom\World\MobjInfo.cs" />
+    <Compile Include="src\Doom\World\MobjState.cs" />
+    <Compile Include="src\Doom\World\MobjStateDef.cs" />
+    <Compile Include="src\Doom\World\MobjType.cs" />
+    <Compile Include="src\Doom\World\MonsterBehavior.cs" />
+    <Compile Include="src\Doom\World\PathTraversal.cs" />
+    <Compile Include="src\Doom\World\PathTraverseFlags.cs" />
+    <Compile Include="src\Doom\World\Platform.cs" />
+    <Compile Include="src\Doom\World\PlatformState.cs" />
+    <Compile Include="src\Doom\World\PlatformType.cs" />
+    <Compile Include="src\Doom\World\PlayerBehavior.cs" />
+    <Compile Include="src\Doom\World\PlayerSprite.cs" />
+    <Compile Include="src\Doom\World\PlayerSpriteDef.cs" />
+    <Compile Include="src\Doom\World\PowerType.cs" />
+    <Compile Include="src\Doom\World\SectorAction.cs" />
+    <Compile Include="src\Doom\World\SectorActionResult.cs" />
+    <Compile Include="src\Doom\World\Specials.cs" />
+    <Compile Include="src\Doom\World\StairType.cs" />
+    <Compile Include="src\Doom\World\StatusBar.cs" />
+    <Compile Include="src\Doom\World\StrobeFlash.cs" />
+    <Compile Include="src\Doom\World\ThingAllocation.cs" />
+    <Compile Include="src\Doom\World\ThingInteraction.cs" />
+    <Compile Include="src\Doom\World\ThingMovement.cs" />
+    <Compile Include="src\Doom\World\Thinker.cs" />
+    <Compile Include="src\Doom\World\Thinkers.cs" />
+    <Compile Include="src\Doom\World\ThinkerState.cs" />
+    <Compile Include="src\Doom\World\VerticalDoor.cs" />
+    <Compile Include="src\Doom\World\VerticalDoorType.cs" />
+    <Compile Include="src\Doom\World\VisibilityCheck.cs" />
+    <Compile Include="src\Doom\World\WeaponBehavior.cs" />
+    <Compile Include="src\Doom\World\WeaponInfo.cs" />
+    <Compile Include="src\Doom\World\WeaponType.cs" />
+    <Compile Include="src\Doom\World\World.cs" />
+    <Compile Include="src\Program.cs" />
+    <Compile Include="src\SoftwareRendering\AutoMapRenderer.cs" />
+    <Compile Include="src\SoftwareRendering\DrawScreen.cs" />
+    <Compile Include="src\SoftwareRendering\FinaleRenderer.cs" />
+    <Compile Include="src\SoftwareRendering\IntermissionRenderer.cs" />
+    <Compile Include="src\SoftwareRendering\IRenderer.cs" />
+    <Compile Include="src\SoftwareRendering\MenuRenderer.cs" />
+    <Compile Include="src\SoftwareRendering\OpeningSequenceRenderer.cs" />
+    <Compile Include="src\SoftwareRendering\SfmlRenderer.cs" />
+    <Compile Include="src\SoftwareRendering\StatusBarRenderer.cs" />
+    <Compile Include="src\SoftwareRendering\ThreeDRenderer.cs" />
+    <Compile Include="src\SoftwareRendering\WipeEffect.cs" />
+    <Compile Include="src\UserInput\DoomKey.cs" />
+    <Compile Include="src\UserInput\DoomKeyEx.cs" />
+    <Compile Include="src\UserInput\DoomMouseButton.cs" />
+    <Compile Include="src\UserInput\DoomMouseButtonEx.cs" />
+    <Compile Include="src\UserInput\IUserInput.cs" />
+    <Compile Include="src\UserInput\KeyBinding.cs" />
+    <Compile Include="src\UserInput\NullUserInput.cs" />
+    <Compile Include="src\UserInput\SfmlUserInput.cs" />
   </ItemGroup>
-
   <ItemGroup>
-    <Folder Include="src\Audio\CSharpSynth\" />
+    <Reference Include="SFML.Audio, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SFML.Audio.2.5.0\lib\netstandard2.0\SFML.Audio.dll</HintPath>
+    </Reference>
+    <Reference Include="SFML.Graphics, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SFML.Graphics.2.5.0\lib\netstandard2.0\SFML.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="SFML.System, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SFML.System.2.5.0\lib\netstandard2.0\SFML.System.dll</HintPath>
+    </Reference>
+    <Reference Include="SFML.Window, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SFML.Window.2.5.0\lib\netstandard2.0\SFML.Window.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0-preview.7.20364.11\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
-
+  <ItemGroup>
+    <Content Include="DoomSharp.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

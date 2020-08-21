@@ -15,10 +15,11 @@
 
 
 
+using DoomSharp;
 using System;
 using System.Runtime.InteropServices;
 
-namespace DoomSharp
+namespace DoomSharpTest
 {
     public static class Program
     {

@@ -52,7 +52,7 @@ namespace DoomSharp.Audio
             {
                 Console.WriteLine("Failed");
                 Dispose();
-                ExceptionDispatchInfo.Throw(e);
+                ExceptionDispatchInfo.Capture(e);
             }
         }
 
@@ -159,7 +159,7 @@ namespace DoomSharp.Audio
                 this.parent = parent;
                 this.config = config;
 
-                config.audio_musicvolume = Math.Clamp(config.audio_musicvolume, 0, parent.MaxVolume);
+                config.audio_musicvolume = MathHelper.Clamp(config.audio_musicvolume, 0, parent.MaxVolume);
 
                 synthesizer = new Synthesizer(MusDecoder.SampleRate, 2, MusDecoder.BufferLength, 1);
                 synthesizer.LoadBank(sfPath);

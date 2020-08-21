@@ -48,7 +48,7 @@ namespace DoomSharp
             }
             catch (Exception e)
             {
-                ExceptionDispatchInfo.Throw(e);
+                ExceptionDispatchInfo.Capture(e);
             }
         }
 
