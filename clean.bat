@@ -1,5 +1,5 @@
-rmdir /s /q "ManagedDoom\bin"
-rmdir /s /q "ManagedDoom\obj"
-rmdir /s /q "ManagedDoomTest\bin"
-rmdir /s /q "ManagedDoomTest\obj"
+rmdir /s /q "DoomSharp\bin"
+rmdir /s /q "DoomSharp\obj"
+rmdir /s /q "DoomSharpTest\bin"
+rmdir /s /q "DoomSharpTest\obj"
 pause
